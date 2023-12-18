@@ -1,7 +1,4 @@
-import entities.Carrinho;
-import entities.Funcionario;
-import entities.Cliente;
-import entities.Produtos;
+import entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +18,16 @@ public class Loja {
         System.out.println("Você é um Cliente ou um Funcionário?");
         char user = scanner.nextLine().charAt(0);
         System.out.println();
+        Operacoes operacoes;
+
         switch (user) {
             case 'C':
                 System.out.print("Escreva seu nome: ");
                 String nome = scanner.nextLine();
                 System.out.print("Escreva sua senha: ");
                 String senha = scanner.nextLine();
-                Cliente cliente = new Cliente(nome, senha);
-                cliente.logar(nome, senha);
+                Operacoes operacoes1 = new Cliente(nome, senha);
+                operacoes1.logar(nome, senha);
                 System.out.printf("%n%n");
                 inicializarCliente();
                 break;
@@ -37,8 +36,8 @@ public class Loja {
                 nome = scanner.nextLine();
                 System.out.print("Escreva sua senha: ");
                 senha = scanner.nextLine();
-                Funcionario funcionario = new Funcionario(nome, senha);
-                funcionario.logar(nome, senha);
+                Operacoes operacoes2 = new Funcionario(nome, senha);
+                operacoes2.logar(nome, senha);
                 System.out.printf("%n%n");
                 inicializarFuncionario();
                 break;
@@ -65,6 +64,8 @@ public class Loja {
             System.out.println(produtos.get(contador));
             contador++;
         }
+
+
 
         System.out.print("Qual produto deseja comprar? (0, 1, 2, 3, 4): ");
         int compra = scanner.nextInt();
@@ -112,6 +113,8 @@ public class Loja {
             contador++;
         }
 
+
+
         System.out.print("Qual produto gostaria de modificar? (0, 1, 2, 3, 4): ");
         int indice = scanner.nextInt();
         scanner.nextLine();
@@ -139,11 +142,13 @@ public class Loja {
 
         System.out.println();
         System.out.println("Novos dados: ");
+        StringBuilder sb = new StringBuilder();
         contador = 0;
         for (i = 0; i <= 4; i++) {
-            System.out.println(produtos.get(contador));
+            sb.append(produtos.get(contador));
+            sb.append(System.lineSeparator());
             contador++;
         }
-        System.out.println("Fim do código.");
+        System.out.println(sb.toString() + "Fim do código.");
     }
 }
